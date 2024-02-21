@@ -1,0 +1,17 @@
+<div class="flex flex-col justify-center h-screen text-5xl">
+  <h1>
+    Welcome to
+    <span class="text-purple-600 font-bold uppercase"> Undying Blog App </span>
+  </h1>
+  <p class="text-base mb-5">An overused application to test CRUD</p>
+  <form #nameForm="ngForm" (ngSubmit)="onSubmit(nameForm)">
+    <input
+      type="text"
+      placeholder="What should we call you?"
+      class="bg-slate-950 outline-none border-b border-purple-600 autofill:!bg-slate-950 autofill:!shadow-slate-950"
+      name="name"
+      autocomplete="off"
+      ngModel
+    />
+  </form>
+</div>

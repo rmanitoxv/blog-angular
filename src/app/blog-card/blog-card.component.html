@@ -1,0 +1,47 @@
+<div class="border border-white rounded-lg px-4 py-6 group">
+  <div class="flex justify-between items-center h-full mb-2">
+    <div class="flex gap-1 items-center">
+      <div class="text-base">{{ blog.users_id }}</div>
+      <div>·</div>
+      <div class="text-xs italic">{{ blog.date }}</div>
+    </div>
+    <div
+      class="flex gap-2 h-8 items-center"
+      *ngIf="checkIfOwned(blog.users_id) && !onEditMode"
+    >
+      <mat-icon
+        (click)="onEditMode = true"
+        fontIcon="edit"
+        class="!text-lg !w-auto !h-auto opacity-0 group-hover:opacity-100 hover:text-green-600 cursor-pointer"
+      ></mat-icon>
+      <mat-icon
+        (click)="deleteBlog(blog.id)"
+        fontIcon="close"
+        class="!w-auto !h-auto opacity-0 group-hover:opacity-100 hover:text-red-600 cursor-pointer"
+      ></mat-icon>
+    </div>
+    <div
+      class="flex gap-2 h-8 items-center"
+      *ngIf="checkIfOwned(blog.users_id) && onEditMode"
+    >
+      <mat-icon
+        (click)="editBlog(blog.id)"
+        fontIcon="check"
+        class="!w-auto !h-auto opacity-0 group-hover:opacity-100 hover:text-green-600 cursor-pointer"
+      ></mat-icon>
+      <mat-icon
+        (click)="onEditMode = false"
+        fontIcon="close"
+        class="!w-auto !h-auto opacity-0 group-hover:opacity-100 hover:text-red-600 cursor-pointer"
+      ></mat-icon>
+    </div>
+  </div>
+  <input
+    *ngIf="onEditMode"
+    #blogRef
+    type="text"
+    class="bg-slate-950 text-xl font-medium outline-none border-b border-purple-600 autofill:!bg-slate-950 autofill:!shadow-slate-950"
+    value="{{ blog.blog }}"
+  />
+  <h1 *ngIf="!onEditMode" class="text-xl font-medium">{{ blog.blog }}</h1>
+</div>
